@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>File(s) size</title>
+</head>
+<body>
+<input id="uploadInput" type="file" onchange="read(event)">
+<script>
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+        console.log(reader.result)
+    };
+
+    const read = (event) => {
+        reader.readAsText(event.target.files[0]);
+    }
+
+</script>
+</body>
+</html>
