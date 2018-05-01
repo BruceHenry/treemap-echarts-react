@@ -3,7 +3,7 @@ import {createStore} from 'redux';
 const defaultState = {
     showTip: true,
     doNotShowAgain: localStorage.getItem('doNotShowAgain') === 'true',
-    views: [[], [], []]
+    views: [[]]
 };
 
 const reducer = (state = defaultState, action) => {
@@ -14,13 +14,15 @@ const reducer = (state = defaultState, action) => {
             localStorage.setItem('doNotShowAgain', 'true');
             return {...state, doNotShowAgain: true};
         case 'ADD_DATA':
-            return {...state, views: [...state.views, []]};
+            const arrayToAdd = state.views.slice();
+            arrayToAdd.splice(action.index, 0, []);
+            return {...state, views: arrayToAdd};
         case 'EDIT_DATA':
-            const arrayToedit = state.views;
-            arrayToedit.splice(action.index, 1, action.data);
-            return {...state, views: arrayToedit};
+            const arrayToEdit = state.views.slice();
+            arrayToEdit.splice(action.index, 1, action.data);
+            return {...state, views: arrayToEdit};
         case 'REMOVE_DATA':
-            const arrayToRemove = state.views;
+            const arrayToRemove = state.views.slice();
             arrayToRemove.splice(action.index, 1);
             return {...state, views: arrayToRemove};
         default:
@@ -33,7 +35,7 @@ export const store = createStore(reducer);
 export const closeTip = () => ({type: 'CLOSE_TIP'});
 export const hideTip = () => ({type: 'HIDE_TIP'});
 
-export const addData = () => ({type: 'ADD_DATA'});
+export const addData = (index) => ({type: 'ADD_DATA', index});
 export const editData = (index, data) => ({type: 'EDIT_DATA', index, data});
 export const removeData = (index) => ({type: 'REMOVE_DATA', index});
 

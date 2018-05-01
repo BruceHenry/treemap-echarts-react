@@ -6,15 +6,18 @@ const Views = (props) => {
     return (
         <div id="views--div">
             {
-                props.views.map((element, index) => (<View key={'chart_' + index} index={index}/>))
+                props.views.map((element, index) => {
+                    return (<View key={'chart_' + index} index={index}/>)
+                })
             }
         </div>
     )
-};
+}
+
 
 const mapStateToProps = (state) => {
     return {
-        views: state.views,
+        views: state.views
     };
 };
 

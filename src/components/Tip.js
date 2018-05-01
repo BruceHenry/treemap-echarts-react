@@ -38,7 +38,7 @@ class Tip extends React.Component {
                         <button onClick={this.handleClose} id="close--button"><b>X</b></button>
                     </div>
                     <div id="sample--div">
-                        <div><b>Sample CSV: </b></div>
+                        <div><b>Example CSV Format: </b></div>
                         <table>
                             <tbody>
                             <tr>
