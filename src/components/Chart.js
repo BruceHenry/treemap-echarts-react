@@ -74,10 +74,9 @@ export default class Chart extends React.Component {
             <div className="chart">
                 <ReactEcharts
                     option={this.getOption()}
-                    style={{height: '600px', width: '500px'}}
+                    style={{height: '50rem', width: '40rem'}}
                     className='react_for_echarts'/>
             </div>
         );
     }
 }
-

@@ -22,7 +22,7 @@ module.exports = {
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
-        contentBase: path.join(__dirname, '')
+        contentBase: path.join(__dirname, "dist")
     },
     mode: 'development'
 };

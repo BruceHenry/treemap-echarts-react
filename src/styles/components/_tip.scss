@@ -1,0 +1,48 @@
+#tip--div {
+  font-size: $s-size;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #d9edf7;
+}
+
+#close--div {
+  text-align: right;
+}
+
+#checkbox--input {
+  vertical-align: middle;
+}
+
+#close--button {
+  color: #4c4c4c;
+  background: none;
+  border: none;
+}
+
+#sample--div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+table, td, th {
+  border: $border-width solid black;
+  color: black;
+  font-size: $s-size;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 0 $s-size $l-size;
+}
+
+th {
+  padding: 0 $xs-size;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}

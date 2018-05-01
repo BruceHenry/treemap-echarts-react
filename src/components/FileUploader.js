@@ -1,4 +1,5 @@
 import React from "react";
+import {store, editData} from "../redux";
 
 export default class FileUploader extends React.Component {
     constructor(props) {
@@ -42,7 +43,7 @@ export default class FileUploader extends React.Component {
     handleFileChange(event) {
         const reader = new FileReader();
         reader.onload = () => {
-            this.props.handleFileChange(FileUploader.parseCSV(reader.result));
+            store.dispatch(editData(this.props.index, FileUploader.parseCSV(reader.result)));
         };
         if (event.target.files.length > 0)
             reader.readAsText(event.target.files[0]);
