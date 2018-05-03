@@ -47,6 +47,7 @@ export default class FileUploader extends React.Component {
         };
         if (event.target.files.length > 0)
             reader.readAsText(event.target.files[0]);
+        event.target.value = ''
     }
 
     render() {

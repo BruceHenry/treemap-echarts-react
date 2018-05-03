@@ -1,13 +1,23 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {store, addData, removeData} from "../redux";
+import {store, addData, moveData, removeData} from "../redux";
 
 class Menu extends React.Component {
     constructor(props) {
         super(props);
+        this.handleMoveLeft = this.handleMoveLeft.bind(this);
+        this.handleMoveRight = this.handleMoveRight.bind(this);
         this.handleAddLeft = this.handleAddLeft.bind(this);
         this.handleAddRight = this.handleAddRight.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+    }
+
+    handleMoveLeft() {
+        store.dispatch(moveData(this.props.index, 'Left'));
+    }
+
+    handleMoveRight() {
+        store.dispatch(moveData(this.props.index, 'Right'));
     }
 
     handleAddLeft() {
@@ -25,8 +35,12 @@ class Menu extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.handleAddLeft}>Add to Left</button>
-                <button onClick={this.handleAddRight}>Add to Right</button>
+                <button onClick={this.handleMoveLeft} disabled={this.props.index === 0}>Move Left</button>
+                <button onClick={this.handleMoveRight} disabled={this.props.index === this.props.length - 1}>
+                    Move Right
+                </button>
+                <button onClick={this.handleAddLeft}>Add Left</button>
+                <button onClick={this.handleAddRight}>Add Right</button>
                 <button onClick={this.handleRemove} disabled={this.props.length === 1}>Remove</button>
             </div>
         );

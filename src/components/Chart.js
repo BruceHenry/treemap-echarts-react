@@ -2,10 +2,29 @@ import React from "react";
 import ReactEcharts from 'echarts-for-react';
 
 export default class Chart extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            animation: (function () {
+                let flag = false;
+                return function () {
+                    if (!flag) {
+                        flag = true;
+                        return !flag;
+                    }
+                    return flag;
+                };
+            })()
+        };
+    }
+
     getOption() {
         return {
+            animation:false,
             series: [{
                 type: 'treemap',
+                animationDuration:500,
+                animationEasing: 'quinticOut',
                 top: 10,
                 width: '95%',
                 height: '90%',
@@ -74,6 +93,7 @@ export default class Chart extends React.Component {
             <div className="chart">
                 <ReactEcharts
                     option={this.getOption()}
+                    notMerge={true}
                     style={{height: '50rem', width: '40rem'}}
                     className='react_for_echarts'/>
             </div>
