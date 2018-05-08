@@ -20,7 +20,6 @@ export default class Chart extends React.Component {
 
     getOption() {
         return {
-            animation:false,
             series: [{
                 type: 'treemap',
                 animationDuration:500,

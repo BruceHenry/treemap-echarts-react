@@ -9,32 +9,32 @@ export default class FileUploader extends React.Component {
 
     static parseCSV(data) {
         const lines = data.split('\n');
-        const temp = {};
+        const treemap_data = {};
         for (let line of lines) {
             let columns = line.split(',');
             if (columns.length !== 3)
                 continue;
-            let c = columns[0], name = columns[1], value = parseInt(columns[2]);
+            let class_name = columns[0], name = columns[1], value = parseInt(columns[2]);
             if (isNaN(value))
                 continue;
-            if (!temp.hasOwnProperty(c))
-                temp[c] = {};
-            if (temp[c].hasOwnProperty(name))
-                temp[c][name] += value;
+            if (!treemap_data.hasOwnProperty(class_name))
+                treemap_data[class_name] = {};
+            if (treemap_data[class_name].hasOwnProperty(name))
+                treemap_data[class_name][name] += value;
             else
-                temp[c][name] = value;
+                treemap_data[class_name][name] = value;
         }
         const result = [];
-        for (let c in temp) {
-            if (temp.hasOwnProperty(c)) {
+        for (let c in treemap_data) {
+            if (treemap_data.hasOwnProperty(c)) {
                 let sum = 0;
-                for (let item in temp[c])
-                    if (temp[c].hasOwnProperty(item))
-                        sum += temp[c][item];
+                for (let item in treemap_data[c])
+                    if (treemap_data[c].hasOwnProperty(item))
+                        sum += treemap_data[c][item];
                 result.push({name: c, value: sum, children: []});
-                for (let item in temp[c])
-                    if (temp[c].hasOwnProperty(item))
-                        result[result.length - 1].children.push({name: item, value: temp[c][item]});
+                for (let item in treemap_data[c])
+                    if (treemap_data[c].hasOwnProperty(item))
+                        result[result.length - 1].children.push({name: item, value: treemap_data[c][item]});
             }
         }
         return result;
